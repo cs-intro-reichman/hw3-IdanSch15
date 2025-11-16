@@ -8,7 +8,7 @@ public class Anagram {
 		System.out.println(isAnagram("Tom Marvolo Riddle","I am Lord Voldemort")); // true
 
 		// Tests the preProcess function.
-		System.out.println(preProcess("What? No way!!!"));
+		System.out.println(preProcess("what? No way!!!"));
 		
 		// Tests the randomAnagram function.
 		System.out.println("silent and " + randomAnagram("silent") + " are anagrams.");
@@ -27,23 +27,55 @@ public class Anagram {
 	}  
 
 	// Returns true if the two given strings are anagrams, false otherwise.
-	public static boolean isAnagram(String str1, String str2) {
-		// Replace the following statement with your code
+	public static boolean isAnagram(String str1, String str2) {	
+		str1 = preProcess(str1);
+		str2 = preProcess(str2);
+		int count = 0;	
+		if (str1.length() != str2.length()) return false;
+		for (int i = str2.length() - 1; i >= 0; i--){
+			for (int j = 0; j <= str1.length() - 1; j++){
+				if (str1.charAt(j) == str2.charAt(i)){
+					str2.substring(0, str2.length() - 1);
+					count += 1;
+					break;
+				}
+
+				
+			}
+		}
+		if (count == str1.length())
+		return true;
+		else
 		return false;
+		
 	}
 	   
 	// Returns a preprocessed version of the given string: all the letter characters are converted
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
-		// Replace the following statement with your code
-		return "";
+		str = str.toLowerCase();
+		String processed = "";
+		for (int i = 0; i < str.length() ; i++) {
+			if (str.charAt(i) >= 'a' && str.charAt(i) <= 'z') {
+				processed = processed + str.charAt(i);
+			}
+		}
+		return processed;
 	} 
-	   
+	
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
 	public static String randomAnagram(String str) {
-		// Replace the following statement with your code
-		return "";
+		String randAna = "";
+
+		for (int i = str.length() - 1; i >= 0; i--) {
+			int randIndex = (int)(Math.random() * i);
+			randAna += str.charAt(randIndex);
+			str = str.replace(str.charAt(randIndex), str.charAt(i));
+			str = str.substring(0, i);
+		}
+
+		return randAna;
 	}
 }

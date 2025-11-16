@@ -83,7 +83,7 @@ public class Algebra {
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
 		int i = 0; 
-		if (x2 == 0) return 0;
+		if (x2 == 0 || x1 == 0) return 0;
 		if (x1 > 0 && x2 > 0){
 			while (true) {
 				if (times(i, x2) > minus(x1, x2)) break;
